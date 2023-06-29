@@ -1,0 +1,52 @@
+
+
+<!--<div th:replace="layout/topbar.html :: topbar"></div>-->
+<!--<div th:replace="layout/sidebar.html :: sidebar"></div>-->
+
+<h1>Register User</h1>
+
+<form th:method="post"
+      th:action="@{/user/create}"
+      th:object="${user}" enctype="multipart/form-data">
+    <input type="text" hidden th:field="*{id}" th:value="${user.id}">
+    <div>
+        <label>Email</label>
+        <input type="text" th:field="*{email}" th:value="${user.email}"/>
+        <p th:if="${requestError!=null}"
+           th:text="${requestError['email']}"
+           class="text-danger"></p>
+    </div>
+
+    <div>
+        <label>Full name</label>
+        <input type="text" th:field="*{fullname}" th:value="${user.fullname}"/>
+        <p th:if="${requestError!=null}"
+           th:text="${requestError['fullname']}"
+           class="text-danger"></p>
+
+    </div>
+    <div>
+        <label>Mobile Number</label>
+        <input type="text" th:field="*{mobile_no}" th:value="${user.mobile_no}"/>
+        <p th:if="${requestError!=null}"
+           th:text="${requestError['mobile_no']}"
+           class="text-danger"></p>
+
+    </div>
+    <div>
+        <input type="file" name="image" accept="image/*" class="form-control-file">
+    </div>
+    <div>
+        <label>Password</label>
+        <input type="password" th:field="*{password}" th:value="${user.password}"/>
+        <p th:if="${requestError!=null}"
+           th:text="${requestError['password']}"
+           class="text-danger"></p>
+
+    </div>
+    <br/>
+    <input type="submit" class="btn btn-primary">
+    <input type="reset" class="btn btn-danger">
+</form>
+
+

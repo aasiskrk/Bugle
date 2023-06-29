@@ -1,0 +1,14 @@
+<form th:action="@{/login}" method="post" id="LoginForm">
+    <div class="form-input">
+        <label>Email address</label>
+        <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus/>
+    </div>
+
+    <div class="form-input">
+        <div style="display: flex;justify-content: space-between"><label>password</label> </div>
+        <input type="password" name="password" />
+    </div>
+    <div class="button-section">
+        <button type="submit" form="LoginForm">Sign in</button>
+    </div>
+</form>

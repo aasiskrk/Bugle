@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--<button class="glyphicon glyphicon-off" onclick="location.href='/logout';">Logout</button>-->
+<form th:action="@{/logout}" method="post" id="logoutForm">
+    <button type="submit" form="logoutForm">Logout</button>
+</form>
+</body>
+</html>

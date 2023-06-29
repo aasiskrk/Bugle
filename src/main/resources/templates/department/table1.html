@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Department</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <a class="btn btn-primary" href="/th-department/create1">Create Department</a>
+    <h2>Basic Department Table</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Department Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="department:${departmentList}">
+            <td th:text="${department.id}"></td>
+            <td th:text="${department.departmentName}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{~/th-department/edit1/} + ${department.id}">Edit</a> |
+                <a class="btn btn-danger" th:href="@{~/th-department/delete1/} + ${department.id}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

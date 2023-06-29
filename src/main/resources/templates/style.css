@@ -1,0 +1,40 @@
+.logo-icon {
+    width: 30px;
+    margin-right: 5px;
+}
+
+.jumbotron {
+    background-color: #f8f9fa;
+    padding: 50px;
+}
+
+.display-4 {
+    font-weight: bold;
+}
+
+.hr {
+    border-top: 1px solid black;
+}
+
+.image-collage-container {
+    border-radius: 10px;
+    overflow: hidden;
+    width: 600px;
+    height: 400px;
+    background-color: #f8f9fa;
+    padding: 10px;
+}
+
+.image-collage {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.image-collage img {
+    flex: 0 0 32%;
+    height: 48%;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
