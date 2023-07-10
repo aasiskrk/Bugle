@@ -112,12 +112,8 @@ public class UserController {
         return errors;
 
     }
-
-    //    private String convertImageToBase64(String filename) {
-//        String filePath = System.getProperty("user.dir") + "/canteen_mgmt/" + filename;
-//    }
     public String getImageBase64(String fileName) {
-        String filePath = System.getProperty("user.dir") + "/canteen_mgmt/";
+        String filePath = System.getProperty("user.dir") + "/file_server/";
         File file = new File(filePath + fileName);
         byte[] bytes = new byte[0];
         try {
