@@ -27,6 +27,9 @@ import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +50,7 @@ public class UserServiceImpl implements UserService {
 
 
     private final UserRepo userRepo;
-    public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/canteen_mgmt";
+    public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/file_server";
 //
 //    UserServiceImpl(UserRepo userRepo) {
 //        this.userRepo = userRepo;
@@ -60,6 +63,18 @@ public class UserServiceImpl implements UserService {
         user.setFullName(userPojo.getFullname());
         user.setMobileNo(userPojo.getMobile_no());
         user.setPassword(PasswordEncoderUtil.getInstance().encode(userPojo.getPassword()));
+
+
+        if(userPojo.getImage()!=null){
+            StringBuilder fileNames = new StringBuilder();
+            System.out.println(UPLOAD_DIRECTORY);
+            Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, userPojo.getImage().getOriginalFilename());
+            fileNames.append(userPojo.getImage().getOriginalFilename());
+            Files.write(fileNameAndPath, userPojo.getImage().getBytes());
+
+            user.setImage(userPojo.getImage().getOriginalFilename());
+        }
+
         userRepo.save(user);
         return new UserPojo(user);
     }
