@@ -3,12 +3,14 @@ package com.system.bugle.entity.user_management;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.math.BigInteger;
+
 @Entity
 public class Blog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private BigInteger id;
 
     private String title;
 
@@ -27,7 +29,7 @@ public class Blog {
         this.content = content;
     }
 
-    public Long getId() {
+    public BigInteger getId() {
         return id;
     }
 

@@ -31,7 +31,7 @@ public class UserController {
 
     @GetMapping
     public String getPage() {
-        return "Hello_page";
+        return "hello_page";
     }
 
 
@@ -82,7 +82,6 @@ public class UserController {
                         .imageBase64(getImageBase64(user.getImage()))
                         .email(user.getEmail())
                         .fullName(user.getFullName())
-                        .mobileNo(user.getMobileNo())
                         .build()
 
         ));

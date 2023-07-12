@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Create Blog</h1>
-<form th:action="@{/blogs/save}" th:object="${blogDto}" method="post">
+<form th:method="@{post}" th:action="@{/blogs/save}" th:object="${blogDto}" >
     <div>
         <label for="title">Title:</label>
         <input type="text" id="title" th:field="*{title}">

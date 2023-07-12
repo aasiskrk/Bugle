@@ -30,8 +30,6 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String email;
 
-    @Column(name = "mobile_no")
-    private String mobileNo;
 
     @Column(name = "password", nullable = false)
     private String password;

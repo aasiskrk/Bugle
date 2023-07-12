@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/layout/head :: head"></head>
+
+<body>
+
+<div th:replace="/layout/header :: header"></div>
+
+<div class="container">
+
+  <div th:replace="/layout/posts :: posts(posts=${posts})"></div>
+
+</div>
+
+<footer th:replace="/layout/footer :: footer"></footer>
+
+</body>
+</html>

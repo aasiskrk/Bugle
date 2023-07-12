@@ -6,27 +6,53 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<header th:fragment="header">
-    <div class="topnav">
-        <a class="active" th:href="@{/}">Home</a>
-        <span sec:authorize="hasRole('ROLE_USER')">
-        <a class="left" th:href="@{/createNewPost}">New Post</a>
-        </span>
-        <span sec:authorize="isAuthenticated()">
-        <a class="right" th:href="@{/logout}">Logout</a>
-        </span>
-        <span sec:authorize="isAuthenticated()">
-            <a class="right">Welcome <span sec:authentication="name">name?</span></a>
-        </span>
-        <span sec:authorize="!isAuthenticated()">
-        <a class="right" th:href="@{/login}">Log In</a>
-        <a class="right" th:href="@{/signup}">Sign Up</a>
-        </span>
+<header th:layout:header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#"><img src="daily_bugle_icon.png" alt="Daily Bugle Icon" class="logo-icon"> Daily Bugle</a>
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="@{/}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@{/}">Blogs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Tags</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-button">
+                <span sec:authorize="isAuthenticated()">
+                <button class="nav-link" href="@{/login}">Login</button>
+                </span>
+            </li>
+        </ul>
     </div>
-    <div class="header">
-        <h2>Cool Blog Name</h2>
-    </div>
+</nav>
 </header>
+<!--<header th:layout="header">-->
+<!--    <div class="topnav">-->
+<!--        <a class="active" th:href="@{/}">Home</a>-->
+<!--        <span sec:authorize="hasRole('ROLE_USER')">-->
+<!--        <a class="left" th:href="@{/createNewPost}">New Post</a>-->
+<!--        </span>-->
+<!--        <span sec:authorize="isAuthenticated()">-->
+<!--        <a class="right" th:href="@{/logout}">Logout</a>-->
+<!--        </span>-->
+<!--        <span sec:authorize="isAuthenticated()">-->
+<!--            <a class="right">Welcome <span sec:authentication="name">name?</span></a>-->
+<!--        </span>-->
+<!--        <span sec:authorize="!isAuthenticated()">-->
+<!--        <a class="right" th:href="@{/login}">Log In</a>-->
+<!--        <a class="right" th:href="@{/signup}">Sign Up</a>-->
+<!--        </span>-->
+<!--    </div>-->
+<!--    <div class="header">-->
+<!--        <h2>Cool Blog Name</h2>-->
+<!--    </div>-->
+<!--</header>-->
 
 </body>
 </html>
