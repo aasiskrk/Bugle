@@ -35,8 +35,8 @@ public class ThymeLeafBlogController {
 //        return "data saved";
 //    }
 @PostMapping("/save")
-public String saveBlog(@Valid BlogDto blogDto) throws IOException {
-    BlogService.saveBlog(blogDto);
+public String saveBlog(@Valid BlogDto blogDto){
+    blogService.saveBlog(blogDto);
     return "redirect:/th-blogs/create";
 }
     @GetMapping("/list")

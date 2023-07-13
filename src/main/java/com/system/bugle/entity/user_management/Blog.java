@@ -10,7 +10,7 @@ public class Blog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private BigInteger id;
+    private Long id;
 
     private String title;
 
@@ -29,8 +29,12 @@ public class Blog {
         this.content = content;
     }
 
-    public BigInteger getId() {
+    public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {

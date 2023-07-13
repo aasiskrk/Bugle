@@ -17,7 +17,7 @@ import java.math.BigInteger;
 @AllArgsConstructor
 public class BlogDto {
 
-    private BigInteger id;
+    private Long id;
 
     @NotNull(message = "Title is required")
     private String title;
