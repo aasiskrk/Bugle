@@ -5,6 +5,7 @@ import com.system.bugle.entity.user_management.Blog;
 import com.system.bugle.repo.user_management.BlogRepo;
 import com.system.bugle.services.user_management.BlogService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,14 +19,13 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    @Transactional
     public void saveBlog(BlogDto blogDto) {
         Blog blog = new Blog();
         blog.setTitle(blogDto.getTitle());
         blog.setAuthor(blogDto.getAuthor());
         blog.setContent(blogDto.getContent());
         blogRepo.save(blog);
-
-
     }
 
     @Override

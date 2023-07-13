@@ -3,9 +3,8 @@ package com.system.bugle.entity.user_management;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.math.BigInteger;
-
 @Entity
+@Table(name = "blog") // Optional: Specify the table name explicitly
 public class Blog {
 
     @Id

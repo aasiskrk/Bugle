@@ -1,15 +1,11 @@
 package com.system.bugle.dto;
 
 import com.system.bugle.entity.user_management.Blog;
-import com.system.bugle.entity.user_management.User;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.math.BigInteger;
-
 
 @Setter
 @Getter
@@ -19,17 +15,19 @@ public class BlogDto {
 
     private Long id;
 
-    @NotNull(message = "Title is required")
+    @NotBlank(message = "Title is required")
     private String title;
-    @NotNull(message = "Author name is required")
+
+    @NotBlank(message = "Author name is required")
     private String author;
-    @NotNull(message = "Content is required")
+
+    @NotBlank(message = "Content is required")
     private String content;
 
-    public BlogDto(Blog blog){
-        this.id=blog.getId();
-        this.title=blog.getTitle();
-        this.author=blog.getAuthor();
-        this.content=blog.getContent();
+    public BlogDto(Blog blog) {
+        this.id = blog.getId();
+        this.title = blog.getTitle();
+        this.author = blog.getAuthor();
+        this.content = blog.getContent();
     }
 }

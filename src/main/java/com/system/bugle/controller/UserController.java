@@ -61,7 +61,7 @@ public class UserController {
         redirectAttributes.addFlashAttribute("successMsg", "User saved successfully");
 
 
-        return "redirect:/user/list";
+        return "redirect:/login";
     }
 
     @GetMapping("/edit/{id}")
