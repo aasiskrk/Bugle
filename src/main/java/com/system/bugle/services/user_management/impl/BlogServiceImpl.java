@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BlogServiceImpl implements BlogService {
@@ -26,6 +27,10 @@ public class BlogServiceImpl implements BlogService {
         blog.setAuthor(blogDto.getAuthor());
         blog.setContent(blogDto.getContent());
         blogRepo.save(blog);
+    }
+    @Override
+    public Optional<Blog> fetchById(Long id) {
+        return blogRepo.findById(id);
     }
 
     @Override
