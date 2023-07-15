@@ -7,6 +7,43 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            overflow-x:hidden;
+        }
+        .display-1 {
+            color: #660708;
+            font-family: "Orelega One", sans-serif;
+            font-weight: 500;
+            font-size: 200px;
+        }
+        .lead {
+            font-family: "Space Grotesk", sans-serif;
+        }
+        .carousel-inner {
+            border-radius: 20px;
+        }
+        .card {
+            border-radius: 20px;
+        }
+        .card .btn-primary {
+            background-color: black;
+            color: white;
+        }
+        .card-title{
+            color: black;
+        }
+        .card-text{
+            color: black;
+        }
+        .card-img-top {
+            object-fit: cover;
+            height: 200px;
+            border-radius: 20px 20px 0 0;
+        }
+    </style>
     <title>Bugle - Homepage</title>
 </head>
 <body>
@@ -15,10 +52,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h1 class="display-4">Bugle</h1>
+            <h1 class="display-1">Bugle</h1>
         </div>
         <div class="col-md-6">
-            <p class="lead">Fuel yourself with the latest and greatest <br> articles. Dive into a world of rich outlooks,<br> unbeatable ideas, and captivating stories.</p>
+            <p  style="margin: 90px 50px" class="lead">Fuel yourself with the latest and greatest <br> articles. Dive into a world of rich outlooks,<br> unbeatable ideas, and captivating stories.</p>
         </div>
     </div>
     <hr>
@@ -85,7 +122,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Article 2</h5>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper condimentum ligula, ut consequat neque.</p>
-                    <a href="#" class="btn btnprimary">Read More</a>
+                    <a href="#" class="btn btn-primary">Read More</a>
                 </div>
             </div>
         </div>
@@ -109,27 +146,34 @@
         </div>
     </div>
 
-    <div class="row mt-4">
-        <div class="col-12 contact-section" style="background-color: crimson;">
+</div>
+<div class="crimson-section" style="background-color: #660708">
+    <div class="row mt-4" style="background-color: #660708">
+        <div class="col-12 contact-section" style="background-color: transparent;">
             <h2 class="text-center text-white">Contact</h2>
             <form>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Name">
+                    <div class="form-group col-md-6" style="padding-right: 10px; padding-left: 500px">
+                        <input type="text" style="height: 45px" class="form-control" placeholder="Name">
                     </div>
-                    <div class="form-group col-md-6">
-                        <input type="email" class="form-control" placeholder="Email">
+                    <div class="form-group col-md-6" style="padding-right: 500px; padding-left: 10px">
+                        <input type="email" style="height: 45px" class="form-control" placeholder="Email">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="padding-right: 495px; padding-left: 495px">
                     <textarea class="form-control" rows="4" placeholder="Feedback"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Send</button>
+                <div class="send button" style="padding-right: 495px;padding-left: 495px">
+                    <button style="background-color: rgba(0, 0, 0, 0.5); border: none; outline: none; height: 45px; font-weight: bolder; color: white;"
+                            type="submit" class="btn btn-primary btn-block">Send</button>
+                </div>
+                    <br>
             </form>
         </div>
     </div>
 
 </div>
+<div th:replace="layout/footer :: footer"></div>
 
 <!-- Rest of the content goes here -->
 
