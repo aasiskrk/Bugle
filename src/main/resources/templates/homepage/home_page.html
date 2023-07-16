@@ -43,6 +43,11 @@
             height: 200px;
             border-radius: 20px 20px 0 0;
         }
+        .hr-custom {
+            border-radius: 0;
+            height: 1px;
+            background-color: gray;
+        }
     </style>
     <title>Bugle - Homepage</title>
 </head>
@@ -55,10 +60,10 @@
             <h1 class="display-1">Bugle</h1>
         </div>
         <div class="col-md-6">
-            <p  style="margin: 90px 50px" class="lead">Fuel yourself with the latest and greatest <br> articles. Dive into a world of rich outlooks,<br> unbeatable ideas, and captivating stories.</p>
+            <p  style="margin: 90px 80px" class="lead">Fuel yourself with the latest and greatest <br> articles. Dive into a world of rich outlooks,<br> unbeatable ideas, and captivating stories.</p>
         </div>
     </div>
-    <hr>
+    <hr class="hr-custom">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -148,22 +153,22 @@
 
 </div>
 <div class="crimson-section" style="background-color: #660708">
-    <div class="row mt-4" style="background-color: #660708">
+    <div class="container" style="background-color: #660708">
         <div class="col-12 contact-section" style="background-color: transparent;">
             <h2 class="text-center text-white">Contact</h2>
             <form>
                 <div class="form-row">
-                    <div class="form-group col-md-6" style="padding-right: 10px; padding-left: 500px">
+                    <div class="form-group col-md-6" >
                         <input type="text" style="height: 45px" class="form-control" placeholder="Name">
                     </div>
-                    <div class="form-group col-md-6" style="padding-right: 500px; padding-left: 10px">
+                    <div class="form-group col-md-6" >
                         <input type="email" style="height: 45px" class="form-control" placeholder="Email">
                     </div>
                 </div>
-                <div class="form-group" style="padding-right: 495px; padding-left: 495px">
+                <div class="form-group" >
                     <textarea class="form-control" rows="4" placeholder="Feedback"></textarea>
                 </div>
-                <div class="send button" style="padding-right: 495px;padding-left: 495px">
+                <div class="send button" >
                     <button style="background-color: rgba(0, 0, 0, 0.5); border: none; outline: none; height: 45px; font-weight: bolder; color: white;"
                             type="submit" class="btn btn-primary btn-block">Send</button>
                 </div>
