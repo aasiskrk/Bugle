@@ -40,7 +40,13 @@ public class SpringSecurityConfig {
             throws Exception {
         httpSecurity.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/login","/authenticate" ,"/user/**")
+                .requestMatchers(
+                        "/th-homepage/goHome",
+                        "/th-blogs/getAll",
+                        "/login",
+                        "/authenticate",
+                        "/user/**,",
+                                "/images/buglelogo.png")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

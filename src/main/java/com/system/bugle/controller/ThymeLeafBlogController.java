@@ -1,10 +1,7 @@
 package com.system.bugle.controller;
 
 import com.system.bugle.dto.BlogDto;
-import com.system.bugle.dto.DepartmentDto;
 import com.system.bugle.entity.user_management.Blog;
-import com.system.bugle.pojo.user_management.BlogPojo;
-import com.system.bugle.pojo.user_management.UserPojo;
 import com.system.bugle.services.user_management.BlogService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -36,28 +32,29 @@ public class ThymeLeafBlogController {
         model.addAttribute("blogDto", new BlogDto());
         return "blogs/newblog.html";
     }
+
     @PostMapping("save")
     public String saveBlog(@Valid BlogDto blogDto, BindingResult bindingResult) {
-    if (bindingResult.hasErrors()) {
-        // Handle validation errors
-        return "blogs/newblog.html";
-    }
+        if (bindingResult.hasErrors()) {
+            // Handle validation errors
+            return "blogs/newblog.html";
+        }
 
-    blogService.saveBlog(blogDto);
-    return "redirect:/th-blogs/create";
-}
+        blogService.saveBlog(blogDto);
+        return "redirect:/th-blogs/create";
+    }
 
     @GetMapping("/fetchById/{id}")
     public String showBlogDetails(@PathVariable Long id, Model model) {
         Optional<Blog> blogOptional = blogService.fetchById(id);
         if (blogOptional.isPresent()) {
             model.addAttribute("blogs", blogOptional.get());
-            return "blog_page.html";
+            return "blogs/readmore.html";
         } else {
             // Handle case when blog is not found
             model.addAttribute("errorMessage", "Blog not found");
+            return "blogs/blogs_page.html";
         }
-        return "blogs/blog_page.html";
     }
 
     @GetMapping("/getAll")

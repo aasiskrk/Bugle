@@ -21,8 +21,8 @@
 <header th:layout:header>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img style="height: 40px; padding-left: 17px; padding-bottom: 5px" th:src="@{/image/buglelogo.png}" alt="Daily Bugle Icon" class="logo-icon">
+            <a class="navbar-brand" th:href="@{/th-homepage/goHome}">
+                <img style="height: 40px; padding-left: 17px; padding-bottom: 5px" th:src="@{/images/buglelogo.png}" alt="Daily Bugle Icon" class="logo-icon">
                 <br>
                 <span style="color: #660708; font-size: 15px">Daily Bugle</span>
             </a>
@@ -41,11 +41,17 @@
                 </li>
 
                 <li class="nav-button">
-                    <span sec:authorize="isAuthenticated()">
-                        <button style="color: black;padding: 5px 10px;text-align: center;margin: 4px 10px;background-color: white; border-radius: 10px"
-                                class="nav-link btn" href="@{/login}">Login</button>
-                    </span>
+                    <button id="login-button" style="color: black;padding: 5px 10px;text-align: center;margin: 4px 10px;background-color: white; border-radius: 10px">
+                        Login
+                    </button>
                 </li>
+
+                <script>
+                    document.getElementById("login-button").addEventListener("click", function() {
+                        window.location.href = "/login";
+                    });
+                </script>
+
             </ul>
         </div>
     </nav>

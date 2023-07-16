@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <title>Read More</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+    }
+
+    .full-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .full-content h2, .full-content h3 {
+      color: #fff;
+    }
+
+    .full-content p {
+      color: #ddd;
+    }
+  </style>
+  <div th:replace="layout/header :: header"></div>
+</head>
+
+<body>
+
+<div class="container">
+<div th:each="blog : ${blogs}" class="blog">
+  <h2 th:text="${blog.title}"></h2>
+  <h5>Author: <span th:text="${blog.author}"></span></h5>
+  <p class="short-content" th:text="${blog.content}"></p>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
