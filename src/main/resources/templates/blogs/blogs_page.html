@@ -2,33 +2,86 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Blogs</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <style>
+        body {
+            background-color: #000;
+            color: #fff;
+        }
         .blog {
             border: 1px solid #ccc;
             padding: 10px;
             margin-bottom: 20px;
+            background-color: #222;
         }
 
         .blog h2 {
             margin-top: 0;
+            font-size: 24px;
+            color: #fff;
         }
 
-        .blog h3 {
+        .blog h5 {
             margin-top: 0;
+            font-size: 15px;
+            color: #999;
         }
 
         .blog p {
             margin-bottom: 0;
+            color: #ddd;
+        }
+
+        .blog p.short-content {
+            max-height: 50px;
+            overflow: hidden;
+        }
+
+        .blog a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+
+        .full-content h2,
+        .full-content h3 {
+            color: #fff;
+        }
+
+        .full-content p {
+            color: #ddd;
+        }
+        .hr-custom {
+            border-radius: 0;
+            height: 1px;
+            background-color: gray;
         }
     </style>
 </head>
 <body>
-<h1>Blogs</h1>
-<div th:each="blog : ${blogs}" class="blog">
-    <h2 th:text="${blog.title}"></h2>
-    <h3>Author: <span th:text="${blog.author}"></span></h3>
-    <p th:text="${blog.content}"></p>
-    <!-- Display other blog properties as needed -->
+<div th:replace="layout/header :: header"></div>
+<div class="container">
+    <div class="column">
+        <h1>Blogs</h1>
+        <br>
+        <div th:each="blog : ${blogs}" class="blog">
+            <h2 th:text="${blog.title}"></h2>
+            <h5>Author: <span th:text="${blog.author}"></span></h5>
+            <span th:if="${blog.content.length()>50}">
+            <p><span th:utext="${#strings.substring(blog.content,0,50)} + '  ....'"></span></p>
+            </span>
+            <span th:if="${blog.content.length()<50}">
+            <p><span th:utext="${#strings.substring(blog.content,0,blog.content.length())}"></span></p>
+            </span>
+            <hr class="hr-custom">
+            <a th:href="@{'/th-blogs/fetchById/' + ${blog.id}}">Read More</a>
+        </div>
+    </div>
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>
