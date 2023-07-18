@@ -48,7 +48,8 @@ public class SpringSecurityConfig {
                         "/user/**,",
                         "/user/register",
                         "/user/create",
-                        "/images/**")
+                        "/images/**",
+                        "/file_server/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -60,10 +61,10 @@ public class SpringSecurityConfig {
                 .permitAll()
                 .and()
                 .logout()
-                .logoutUrl("/logout")
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
-                .logoutSuccessUrl("/th-homepage/goHome")
+//                .logoutUrl("/logout")
+//                .invalidateHttpSession(true)
+//                .deleteCookies("JSESSIONID")
+//                .logoutSuccessUrl("/login")
                 .permitAll();
 //                .and()
 //                .sessionManagement()
