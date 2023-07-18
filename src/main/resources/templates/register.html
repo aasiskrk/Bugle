@@ -134,7 +134,7 @@
             </div>
             <!-- Show the uploaded image if available -->
             <div th:if="${user.image != null}" class="uploaded-image">
-                <img th:src="@{'/uploads/' + ${user.image}}" alt="Uploaded Profile Picture" class="img-fluid">
+                <img th:src="'data:file_server/' + ${user.image}"  width="100" height="100" alt="Uploaded Profile Picture" class="img-fluid">
             </div>
 
             <br/>
@@ -142,7 +142,7 @@
             <input type="reset" class="btn btn-danger" value="Reset">
         </form>
         <div class="signup-link">
-            <a th:href="@{/user/register}"  class="create-user-link">Sign Up</a>
+            <a th:href="@{/login}"  class="create-user-link">Login</a>
         </div>
     </div>
 </div>
