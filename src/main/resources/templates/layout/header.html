@@ -40,7 +40,14 @@
                     <a style="color: white" class="nav-link" href="@{}">Contact</a>
                 </li>
 
-                <li class="nav-button">
+                <li class="nav-button" sec:authorize="isAuthenticated()">
+                    <button id="logout-button" style="color: white;padding: 5px 10px;text-align: center;margin: 4px 10px;background-color: #660708; border-radius: 10px">
+                        Logout
+                    </button>
+                </li>
+
+
+                <li class="nav-button" sec:authorize="!isAuthenticated()">
                     <button id="login-button" style="color: black;padding: 5px 10px;text-align: center;margin: 4px 10px;background-color: white; border-radius: 10px">
                         Login
                     </button>
@@ -49,6 +56,12 @@
                 <script>
                     document.getElementById("login-button").addEventListener("click", function() {
                         window.location.href = "/login";
+                    });
+                </script>
+
+                <script>
+                    document.getElementById("logout-button").addEventListener("click", function() {
+                        window.location.href = "/logout";
                     });
                 </script>
 

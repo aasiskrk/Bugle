@@ -1,16 +1,128 @@
-<form th:action="@{/login}" method="post" id="LoginForm">
-    <div class="form-input">
-        <label>Email address</label>
-        <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus/>
-    </div>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            overflow-x: hidden;
+            font-family: Arial, sans-serif;
+        }
 
-    <div class="form-input">
-        <div style="display: flex;justify-content: space-between"><label>password</label> </div>
-        <input type="password" name="password" />
-    </div>
-    <div class="button-section">
-        <button type="submit" form="LoginForm">Sign in</button>
-    </div>
-    <div><a th:href="@{/user/register}">create new user</a></div>
-</form>
+        .center-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 70vh;
+        }
 
+        .login-container {
+            max-width: 300px;
+            width: 100%;
+            background-color: #1E1E1E;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-input {
+            margin-bottom: 15px;
+        }
+
+        .form-input label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            background-color: #292929;
+            color: white;
+            border: 1px solid #373737;
+            border-radius: 3px;
+            padding: 8px;
+            width: 100%;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .button-section {
+            text-align: center;
+        }
+
+        .button-section button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+
+        .button-section button:hover {
+            background-color: #0056b3;
+        }
+
+        .create-user-link {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .create-user-link:hover {
+            text-decoration: underline;
+        }
+        .paint-cimson{
+            color: #660708;
+        }
+        .signup-link {
+            margin-top: 15px; /* Add some top margin to create space between the button and the link */
+            text-align: center; /* Center the "Sign Up" link */
+        }
+        .line{
+
+        }
+    </style>
+</head>
+<body>
+<div th:replace="layout/header :: header"></div>
+<div class="center-content">
+<div class="login-container">
+    <form th:action="@{/login}" method="post" id="LoginForm">
+        <div class="form-input">
+            <label>Email address</label>
+            <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus/>
+        </div>
+
+        <div class="form-input">
+            <div style="display: flex;justify-content: space-between"><label>Password</label> </div>
+            <input type="password" name="password" class="form-control" placeholder="Password" />
+        </div>
+
+        <div class="button-section">
+            <button type="submit" form="LoginForm">Sign in</button>
+        </div>
+
+    </form>
+    <div class="signup-link">
+        <a th:href="@{/user/register}"  class="create-user-link">Sign Up</a>
+    </div>
+</div>
+</div>
+<hr class="line">
+<div class="paint-cimson">
+<div th:replace="layout/footer :: footer"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

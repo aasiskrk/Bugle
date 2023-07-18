@@ -36,7 +36,7 @@ public class LoginController {
         if (authentication.isAuthenticated()) {
             SecurityContextHolder.clearContext();
         }
-        return "redirect:/login";
+        return "redirect:/th-homepage/goHome";
     }
 
 }

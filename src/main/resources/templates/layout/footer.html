@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- Custom CSS -->
 </head>
 <body>
 <footer th:layout:footer>
-  <div class="footer">
-    <p>2023 © Daily Bugle</p>
+  <div style="display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;">
+    <h1 style="font-size: 400px;">2023</h1>
+    <div style="margin-top: 50px;">
+      <a href="https://twitter.com/dailydoseofnone" style="margin: 0 5px;"><img th:src="@{/images/twitter.png}" alt="Twitter" style="width: 50px; height: 50px;"></a>
+      <a href="https://github.com/aasiskrk" style="margin: 0 10px;"><img th:src="@{/images/github.png}" alt="GitHub" style="width: 30px; height: 30px;"></a>
+      <a href="https://instagram.com/aashista_krki" style="margin: 0 10px;"><img th:src="@{/images/insta.png}" alt="Instagram" style="width: 30px; height: 30px;"></a>
+      <a href="https://snapchat.com/add/aashiskarki69" style="margin: 0 10px;"><img th:src="@{/images/snapchat.png}" alt="Snapchat" style="width: 30px; height: 30px;"></a>
+    </div>
+    <p style="margin-top: 30px;">© Daily Bugle</p>
+    <p> ~_~Aashista Karki</p>
   </div>
 </footer>
 </body>

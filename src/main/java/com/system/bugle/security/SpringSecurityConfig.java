@@ -46,7 +46,9 @@ public class SpringSecurityConfig {
                         "/login",
                         "/authenticate",
                         "/user/**,",
-                                "/images/buglelogo.png")
+                        "/user/register",
+                        "/user/create",
+                        "/images/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -57,7 +59,12 @@ public class SpringSecurityConfig {
                 .usernameParameter("email")
                 .permitAll()
                 .and()
-                .httpBasic();
+                .logout()
+                .logoutUrl("/logout")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessUrl("/th-homepage/goHome")
+                .permitAll();
 //                .and()
 //                .sessionManagement()
 //                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

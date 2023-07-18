@@ -35,11 +35,11 @@ public class UserController {
     }
 
 
-    @GetMapping("/create")
-    public String getCreatePage() {
-        return "user/create";
-    }
-
+//    @PostMapping("/create")
+//    public String getCreatePage() {
+//        return "user/create";
+//    }
+//
 
     @GetMapping("/register")
     public String getRegister(Model model) {
