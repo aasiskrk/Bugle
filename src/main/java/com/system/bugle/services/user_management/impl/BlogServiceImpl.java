@@ -29,6 +29,11 @@ public class BlogServiceImpl implements BlogService {
         blog.setUemail(uemail);
         blogRepo.save(blog);
     }
+
+    @Override
+    public List<Blog> getBlogsByUserEmail(String userEmail) {
+        return blogRepo.findByUemail(userEmail);
+    }
     @Override
     public Optional<Blog> fetchById(Long id) {
         return blogRepo.findById(id);

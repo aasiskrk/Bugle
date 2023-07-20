@@ -62,6 +62,17 @@ public class ThymeLeafBlogController {
         }
     }
 
+    @GetMapping("/user-blogs")
+    public String getUserBlogs(Model model, Authentication authentication) {
+        // Get the email of the logged-in user from the Authentication object
+        String userEmail = authentication.getName();
+
+        List<Blog> userBlogs = blogService.getBlogsByUserEmail(userEmail);
+
+        model.addAttribute("blogs", userBlogs);
+        return "blogs/yourblogs.html";
+    }
+
     @GetMapping("/getAll")
     public String getAllBlogs(Model model) {
         List<Blog> blogs = blogService.getAllBlogs();

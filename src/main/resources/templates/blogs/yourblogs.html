@@ -1,10 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Your Blogs</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        /* Styles for body and other elements */
+        body{
+            background-color: black;
+        }
+
+        .blog-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #222;
+            color: #fff;
+        }
+
+        .blog-title {
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .blog-author {
+            font-size: 15px;
+            color: #999;
+        }
+
+        .blog-content {
+            color: #ddd;
+        }
+
+        .read-more-link {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .read-more-link:hover {
+            text-decoration: underline;
+        }
+
+        .hr-custom {
+            border-radius: 0;
+            height: 1px;
+            background-color: gray;
+        }
+    </style>
 </head>
 <body>
+<div th:replace="layout/header :: header"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1 style="color: white">Your Blogs</h1>
+            <br>
+            <div th:each="blog : ${blogs}" class="blog-card">
+                <h2 class="blog-title" th:text="${blog.title}"></h2>
+                <h5 class="blog-author">Author: <span th:text="${blog.author}"></span></h5>
+                <p class="blog-content" th:text="${#strings.substring(blog.content,0,50) + '  ....'}" th:unless="${blog.content.length() <= 50}"></p>
+                <p class="blog-content" th:text="${#strings.substring(blog.content,0,blog.content.length())}" th:if="${blog.content.length() <= 50}"></p>
+                <hr class="hr-custom">
+                <a class="read-more-link" th:href="@{'/th-blogs/fetchById/' + ${blog.id}}">Read More</a>
+            </div>
+        </div>
+    </div>
+</div>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>

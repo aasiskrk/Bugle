@@ -12,5 +12,7 @@ public interface BlogService {
 
     List<Blog> getAllBlogs();
 
+    List<Blog> getBlogsByUserEmail(String userEmail);
+
     Optional<Blog> fetchById(Long id);
 }
