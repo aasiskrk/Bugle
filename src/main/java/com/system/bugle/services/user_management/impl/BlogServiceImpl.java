@@ -21,11 +21,12 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     @Transactional
-    public void saveBlog(BlogDto blogDto) {
+    public void saveBlog(BlogDto blogDto, String uemail) {
         Blog blog = new Blog();
         blog.setTitle(blogDto.getTitle());
         blog.setAuthor(blogDto.getAuthor());
         blog.setContent(blogDto.getContent());
+        blog.setUemail(uemail);
         blogRepo.save(blog);
     }
     @Override

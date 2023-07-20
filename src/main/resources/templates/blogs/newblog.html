@@ -8,45 +8,137 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <!-- Custom CSS -->
-
     <style>
         body {
             background-color: #000;
             color: #fff;
         }
+
+        .form-container {
+            max-width: 700px;
+            width: 100%;
+            background-color: #1E1E1E;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            text-align: center; /* Center the "Create Blog" text */
+        }
+
+        .form-input {
+            margin-bottom: 15px;
+        }
+
+        .form-input label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            background-color: #292929;
+            color: white;
+            border: 1px solid #373737;
+            border-radius: 3px;
+            padding: 8px;
+            width: 100%;
+
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .button-section {
+            text-align: center;
+        }
+
+        .button-section button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+
+        .button-section button:hover {
+            background-color: #0056b3;
+        }
+
+        .back-link {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .back-link a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
     </style>
-
-
 </head>
 <body>
 <div th:replace="layout/header :: header"></div>
 
-<div class="container">
-<h1>Create Blog</h1>
-<form th:method="@{post}" th:action="@{/th-blogs/save}" th:object="${blogDto}" >
-    <div>
-        <label for="title">Title:</label>
-        <input type="text" id="title" th:field="*{title}" required>
+<div class="container" style="display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;">
+    <div class="form-container">
+        <h1>Create Blog</h1>
+        <form th:method="post" th:action="@{/th-blogs/save}" th:object="${blogDto}" >
+            <div th:if="${param.save}" style="background-color: darkgreen; display: flex">
+                <p class="alert-green"> Your blog has been created.</p>
+            </div>
+            <div class="form-input">
+                <input type="text" id="title" th:field="*{title}" class="form-control" placeholder="Title of Blog" required>
+            </div>
+            <div class="form-input">
+                <input type="text" id="author" th:field="*{author}" class="form-control" placeholder="Author" required>
+            </div>
+            <div class="form-input">
+                <textarea id="content" th:field="*{content}" class="form-control" placeholder="Write something meaningful!" style="resize: vertical; /* This allows the textarea to be vertically resizable */
+            min-height: 300px;" required></textarea>
+            </div>
+            <div class="button-section">
+                <button type="submit"  onclick="validateAndSave()">Save</button>
+            </div>
+            <div class="back-link">
+                <a th:href="@{/th-blogs/getAll}">Go to All Blogs</a>
+            </div>
+        </form>
     </div>
-    <div>
-        <label for="author">Author:</label>
-        <input type="text" id="author" th:field="*{author}" required>
-    </div>
-    <div>
-        <label for="content">Content:</label>
-        <textarea id="content" th:field="*{content}" required></textarea>
-    </div>
-    <div>
-        <button type="submit">Save</button>
-    </div>
-<br>
-    <div><a th:href="@{/th-blogs/getAll}">Goto All Blogs</a></div>
-</form>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<script>
+
+        function showPopup(message) {
+        alert(message);}
+
+        function validateAndSave() {
+        var title = document.getElementById('title').value;
+        var author = document.getElementById('author').value;
+        var content = document.getElementById('content').value;
+        if (title.trim() === '' || author.trim() === '' || content.trim() === '') {
+        showPopup("Please fill in all the text fields.");
+    } else {
+        showPopup("Your blog has been saved!");
+    }
+    }
+
+
+
+
+
+</script>
 
 </body>
 </html>

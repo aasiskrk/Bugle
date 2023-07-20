@@ -2,7 +2,13 @@ package com.system.bugle.controller;
 
 import com.system.bugle.dto.BlogDto;
 import com.system.bugle.entity.user_management.Blog;
+import com.system.bugle.entity.user_management.User;
+import com.system.bugle.pojo.user_management.UserPojo;
+import com.system.bugle.repo.user_management.UserRepo;
 import com.system.bugle.services.user_management.BlogService;
+import com.system.bugle.services.user_management.UserService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,9 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import jakarta.validation.Valid;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,13 +38,14 @@ public class ThymeLeafBlogController {
     }
 
     @PostMapping("save")
-    public String saveBlog(@Valid BlogDto blogDto, BindingResult bindingResult) {
+    public String saveBlog(@Valid BlogDto blogDto, BindingResult bindingResult, Authentication authentication) {
         if (bindingResult.hasErrors()) {
             // Handle validation errors
             return "blogs/newblog.html";
         }
+        String uemail= authentication.getName();
 
-        blogService.saveBlog(blogDto);
+        blogService.saveBlog(blogDto, uemail);
         return "redirect:/th-blogs/create";
     }
 

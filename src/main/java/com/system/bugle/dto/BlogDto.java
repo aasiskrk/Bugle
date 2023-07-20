@@ -6,12 +6,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class BlogDto {
+
+    private String uemail;
 
     private Long id;
 
@@ -25,6 +28,7 @@ public class BlogDto {
     private String content;
 
     public BlogDto(Blog blog) {
+        this.uemail=blog.getUemail();
         this.id = blog.getId();
         this.title = blog.getTitle();
         this.author = blog.getAuthor();

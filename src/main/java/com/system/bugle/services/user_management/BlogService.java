@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface BlogService {
 
-    void saveBlog(BlogDto blogDto);
+    void saveBlog(BlogDto blogDto, String uemail);
 
     List<Blog> getAllBlogs();
 

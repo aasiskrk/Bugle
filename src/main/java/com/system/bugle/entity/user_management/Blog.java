@@ -12,6 +12,8 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String uemail;
+
     private String title;
 
     private String author;
