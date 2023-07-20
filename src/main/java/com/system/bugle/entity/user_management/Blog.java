@@ -1,5 +1,5 @@
 package com.system.bugle.entity.user_management;
-
+//Made by aashista karki
 import jakarta.persistence.*;
 import lombok.Data;
 

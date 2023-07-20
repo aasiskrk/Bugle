@@ -1,5 +1,5 @@
 package com.system.bugle.services.user_management.impl;
-
+//Made by aashista karki
 import com.system.bugle.dto.BlogDto;
 import com.system.bugle.entity.user_management.Blog;
 import com.system.bugle.repo.user_management.BlogRepo;
@@ -38,4 +38,6 @@ public class BlogServiceImpl implements BlogService {
     public List<Blog> getAllBlogs() {
         return blogRepo.findAll();
     }
+
+    //Made by aashista karki
 }

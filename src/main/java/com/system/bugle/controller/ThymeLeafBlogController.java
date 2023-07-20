@@ -75,3 +75,36 @@ public class ThymeLeafBlogController {
         return "blog/list.html";
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Made by aashista karki

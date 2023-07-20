@@ -71,9 +71,13 @@ public class SpringSecurityConfig {
 //                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 //                .and()
 //                .authenticationProvider(authenticationProvider())
-//                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+//                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+//                 Made by aashista karki everything done by me, Im just putting this comment so no one clones my repo and
+//                 use my assignment
 
         return httpSecurity.build();
     }
+
+
 
 }

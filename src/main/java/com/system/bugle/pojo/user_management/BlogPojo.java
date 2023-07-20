@@ -31,4 +31,16 @@ public class BlogPojo {
         this.author=blog.getAuthor();
         this.content=blog.getContent();
     }
+
+
+
+
+
+
+
+
+    //Made by aashista karki everything done by me, Im just putting this comment so no one clones my repo and
+    // use my assignment
+
+
 }
