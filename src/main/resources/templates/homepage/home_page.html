@@ -157,7 +157,7 @@
 
 </div>
 <div class="crimson-section" style="background-color: #660708">
-    <a name="contactsec"></a>
+    <a id="contactsec"></a>
     <div class="container" style="background-color: #660708">
         <br>
         <br>
@@ -189,6 +189,18 @@
     <div th:replace="layout/footer :: footer"></div>
 </div>
 
+
+
+<script>
+    // Smooth scroll to the contact section when the "Contact" link is clicked
+    document.querySelector('a[href="#contactsec"]').addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('contactsec').scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+        });
+    });
+</script>
 
 <!-- Rest of the content goes here -->
 
