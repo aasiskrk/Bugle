@@ -44,5 +44,9 @@ public class BlogServiceImpl implements BlogService {
         return blogRepo.findAll();
     }
 
+    public void deleteById(Long id){
+        blogRepo.deleteById(id);
+    }
+
     //Made by aashista karki
 }

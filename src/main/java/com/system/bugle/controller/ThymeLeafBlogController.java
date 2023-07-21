@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import jakarta.validation.Valid;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -84,6 +85,13 @@ public class ThymeLeafBlogController {
     public String getBlogList(Model model) {
         model.addAttribute("blogs", blogService.getAllBlogs());
         return "blog/list.html";
+    }
+
+    @GetMapping("/deleteblog/{id}")
+    public String deleteBlog(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+        blogService.deleteById(id);
+        redirectAttributes.addFlashAttribute("deleteMsg", "Blog deleted successfully");
+        return "redirect:/th-blogs/user-blogs";
     }
 }
 

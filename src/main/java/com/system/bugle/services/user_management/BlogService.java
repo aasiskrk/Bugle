@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface BlogService {
 
+    void deleteById(Long id);
     void saveBlog(BlogDto blogDto, String uemail);
 
     List<Blog> getAllBlogs();
