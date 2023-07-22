@@ -16,4 +16,7 @@ public interface BlogService {
     List<Blog> getBlogsByUserEmail(String userEmail);
 
     Optional<Blog> fetchById(Long id);
+
+    void updateBlog(Long id, BlogDto blogDto);
+
 }

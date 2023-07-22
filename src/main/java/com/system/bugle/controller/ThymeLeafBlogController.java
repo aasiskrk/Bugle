@@ -12,10 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -81,16 +78,36 @@ public class ThymeLeafBlogController {
         return "blogs/blogs_page.html";
     }
 
-    @GetMapping("/list")
-    public String getBlogList(Model model) {
-        model.addAttribute("blogs", blogService.getAllBlogs());
-        return "blog/list.html";
-    }
 
     @GetMapping("/deleteblog/{id}")
     public String deleteBlog(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
         blogService.deleteById(id);
         redirectAttributes.addFlashAttribute("deleteMsg", "Blog deleted successfully");
+        return "redirect:/th-blogs/user-blogs";
+    }
+
+
+    @GetMapping("/editblog/{id}")
+    public String showEditBlogForm(@PathVariable Long id, Model model) {
+        Optional<Blog> blogOptional = blogService.fetchById(id);
+        if (blogOptional.isPresent()) {
+            BlogDto blogDto = new BlogDto(blogOptional.get());
+            model.addAttribute("blogDto", blogDto);
+            return "blogs/editblog.html";
+        } else {
+            // Handle case when blog is not found
+            model.addAttribute("errorMessage", "Blog not found");
+            return "blogs/blogs_page.html";
+        }
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateBlog(@PathVariable Long id, @Valid BlogDto blogDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            // Handle validation errors
+            return "blogs/editblog.html";
+        }
+        blogService.updateBlog(id, blogDto);
         return "redirect:/th-blogs/user-blogs";
     }
 }

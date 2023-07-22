@@ -74,7 +74,7 @@
             <p><span th:utext="${#strings.substring(blog.content,0,blog.content.length())}"></span></p>
             </span>
             <hr class="hr-custom">
-            <a th:href="@{'/th-blogs/fetchById/' + ${blog.id}}">Read More</a>
+            <a style="color: #247eff" th:href="@{'/th-blogs/fetchById/' + ${blog.id}}">Read More</a>
         </div>
     </div>
 </div>

@@ -56,6 +56,15 @@
             cursor: pointer;
 
         }
+        .edit-btn {
+            background-color: royalblue;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+
+        }
 
         /* Style for the delete confirmation popup */
         .confirmation-popup {
@@ -86,12 +95,25 @@
                 <p class="blog-content" th:text="${#strings.substring(blog.content,0,blog.content.length())}"
                    th:if="${blog.content.length() <= 50}"></p>
                 <hr class="hr-custom">
-                <a class="read-more-link" th:href="@{'/th-blogs/fetchById/' + ${blog.id}}">Read More</a>
-                <!-- Add the delete button with onclick event -->
-                <div>
-                    <a th:href="@{'/th-blogs/deleteblog/' + ${blog.id}}">
-                        <button class="delete-btn" type="button">Delete Post</button>
-                    </a>
+
+                <!-- New container for the delete button -->
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-6 text-left">
+                        <!-- This will align the "Read More" link to the right -->
+                        <a class="read-more-link" style="color: #247eff" th:href="@{'/th-blogs/fetchById/' + ${blog.id}}">Read More</a>
+                    </div>
+                    <div class="col-6 text-right">
+                        <div class="d-flex justify-content-end">
+                            <a th:href="@{'/th-blogs/editblog/' + ${blog.id}}">
+                                <button class="edit-btn mr-2" type="button">Edit Post</button>
+                            </a>
+
+                            <a th:href="@{'/th-blogs/deleteblog/' + ${blog.id}}">
+                                <button class="delete-btn"  type="button">Delete Post</button>
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -103,7 +125,6 @@
     <button class="btn btn-danger" id="confirmDelete">Delete</button>
     <button class="btn btn-secondary" id="cancelDelete">Cancel</button>
 </div>
-
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>

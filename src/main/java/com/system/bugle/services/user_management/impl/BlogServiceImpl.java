@@ -7,6 +7,7 @@ import com.system.bugle.services.user_management.BlogService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,6 +47,21 @@ public class BlogServiceImpl implements BlogService {
 
     public void deleteById(Long id){
         blogRepo.deleteById(id);
+    }
+
+
+    @Override
+    @Transactional
+    public void updateBlog(Long id, BlogDto blogDto) {
+        Optional<Blog> blogOptional = blogRepo.findById(id);
+        if (blogOptional.isPresent()) {
+            Blog existingBlog = blogOptional.get();
+            existingBlog.setTitle(blogDto.getTitle());
+            existingBlog.setAuthor(blogDto.getAuthor());
+            existingBlog.setContent(blogDto.getContent());
+            // Update any other fields as needed
+            blogRepo.save(existingBlog);
+        }
     }
 
     //Made by aashista karki

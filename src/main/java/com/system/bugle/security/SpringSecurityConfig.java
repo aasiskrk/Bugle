@@ -72,7 +72,7 @@ public class SpringSecurityConfig {
 //                .and()
 //                .authenticationProvider(authenticationProvider())
 //                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-//                 Made by aashista karki everything done by me, Im just putting this comment so no one clones my repo and
+//                 Made by aashista karki everything done by me, I'm just putting this comment so no one clones my repo and
 //                 use my assignment
 
         return httpSecurity.build();
