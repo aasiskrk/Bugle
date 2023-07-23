@@ -14,10 +14,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
-import java.util.Optional;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Controller
 @RequestMapping("/th-blogs")
@@ -42,6 +46,7 @@ public class ThymeLeafBlogController {
             return "blogs/newblog.html";
         }
         String uemail= authentication.getName();
+        blogDto.setDateTime(LocalDateTime.now());
 
         blogService.saveBlog(blogDto, uemail);
         return "redirect:/th-blogs/create";
@@ -66,6 +71,7 @@ public class ThymeLeafBlogController {
         String userEmail = authentication.getName();
 
         List<Blog> userBlogs = blogService.getBlogsByUserEmail(userEmail);
+        Collections.sort(userBlogs, Comparator.comparing(Blog::getDateTime).reversed());
 
         model.addAttribute("blogs", userBlogs);
         return "blogs/yourblogs.html";
@@ -74,6 +80,8 @@ public class ThymeLeafBlogController {
     @GetMapping("/getAll")
     public String getAllBlogs(Model model) {
         List<Blog> blogs = blogService.getAllBlogs();
+
+        Collections.sort(blogs, Comparator.comparing(Blog::getDateTime).reversed());
         model.addAttribute("blogs", blogs);
         return "blogs/blogs_page.html";
     }
@@ -109,6 +117,20 @@ public class ThymeLeafBlogController {
         }
         blogService.updateBlog(id, blogDto);
         return "redirect:/th-blogs/user-blogs";
+    }
+
+    public String getImageBase64(String fileName) {
+        String filePath = System.getProperty("user.dir") + "/file_server/";
+        File file = new File(filePath + fileName);
+        byte[] bytes = new byte[0];
+        try {
+            bytes = Files.readAllBytes(file.toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        String base64 = Base64.getEncoder().encodeToString(bytes);
+        return base64;
     }
 }
 

@@ -12,37 +12,75 @@
       color: #fff;
     }
 
-    .full-content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    .full-content h2, .full-content h3 {
-      color: #fff;
-    }
-
-    .full-content p {
-      color: #ddd;
-    }
     .blog {
       border: 1px solid #ccc;
       padding: 10px;
       margin-bottom: 20px;
       background-color: #222;
     }
+
+    /* Center align the title */
+    .blog h2 {
+      text-align: left;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    /* Change the author's color to a bit dimmer color */
+    .blog h5 {
+      color: #aaa;
+      font-size: 16px;
+    }
+
+    /* Style the content */
+    .blog p.short-content {
+      color: #ffffff;
+      max-height: 100px;
+      overflow: hidden;
+
+    }
+
+    /* Style the horizontal line (hr) */
+    .blog hr {
+      border-color: gray;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+
+    .back-btn {
+      background-color: royalblue;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 10px;
+
+    }
   </style>
-  <div th:replace="layout/header :: header"></div>
+
 </head>
 
 <body>
+<div th:replace="layout/header :: header"></div>
+
+
 
 <div class="container">
-<div th:each="blog : ${blogs}" class="blog">
-  <h2 th:text="${blog.title}"></h2>
-  <h5>Author: <span th:text="${blog.author}"></span></h5>
-  <p class="short-content" th:text="${blog.content}"></p>
-</div>
+  <a th:href="@{/th-blogs/getAll}">
+    <button class="back-btn"  type="button">Goto All Blogs</button>
+  </a>
+  <a th:href="@{/th-blogs/user-blogs}">
+    <button class="back-btn"  type="button">Goto Your Blogs</button>
+  </a>
+
+  <div th:each="blog : ${blogs}" class="blog">
+    <h2 th:text="${blog.title}"></h2>
+    <h5>Author: <span th:text="${blog.author}"></span></h5>
+    <h5><span th:text="${#temporals.format(blog.dateTime, 'yyyy-MM-dd HH:mm:ss')}"></span></h5>
+    <hr>
+    <p class="short-content" th:text="${blog.content}"></p>
+  </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

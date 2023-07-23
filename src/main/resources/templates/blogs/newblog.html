@@ -91,6 +91,10 @@
     <div class="form-container">
         <h1>Create Blog</h1>
         <form th:method="post" th:action="@{/th-blogs/save}" th:object="${blogDto}" >
+
+            <!-- Add a hidden input field to store the current date and time -->
+            <input type="hidden" id="dateTime" name="dateTime" th:value="*{dateTime}" />
+
             <div th:if="${param.save}" style="background-color: darkgreen; display: flex">
                 <p class="alert-green"> Your blog has been created.</p>
             </div>
@@ -119,23 +123,30 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 <script>
+    function getCurrentDateTime() {
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = ('0' + (now.getMonth() + 1)).slice(-2);
+        var day = ('0' + now.getDate()).slice(-2);
+        var hours = ('0' + now.getHours()).slice(-2);
+        var minutes = ('0' + now.getMinutes()).slice(-2);
+        return year + '-' + month + '-' + day + 'T' + hours + ':' + minutes;
+    }
 
-        function showPopup(message) {
+    function showPopup(message) {
         alert(message);}
-
-        function validateAndSave() {
+    function validateAndSave() {
         var title = document.getElementById('title').value;
         var author = document.getElementById('author').value;
         var content = document.getElementById('content').value;
         if (title.trim() === '' || author.trim() === '' || content.trim() === '') {
-        showPopup("Please fill in all the text fields.");
-    } else {
-        showPopup("Your blog has been saved!");
+            showPopup("Please fill in all the text fields.");
+        } else {
+            // Set the value of the hidden input field to the current date and time
+            document.getElementById('dateTime').value = getCurrentDateTime();
+            showPopup("Your blog has been saved!");
+        }
     }
-    }
-
-
-
 
 
 </script>

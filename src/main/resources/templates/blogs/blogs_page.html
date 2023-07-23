@@ -21,10 +21,15 @@
             color: #fff;
         }
 
-        .blog h5 {
+        .blog h5 span{
             margin-top: 0;
             font-size: 15px;
             color: #999;
+        }
+        .blog h5{
+            margin-top: 0;
+            font-size: 15px;
+            color: #c7c7c7;
         }
 
         .blog p {
@@ -66,7 +71,8 @@
         <br>
         <div th:each="blog : ${blogs}" class="blog">
             <h2 th:text="${blog.title}"></h2>
-            <h5>Author: <span th:text="${blog.author}"></span></h5>
+            <h5>Author: <span style="margin-right: 30px" th:text="${blog.author}"></span> Published on: <span th:text="${#temporals.format(blog.dateTime, 'yyyy-MM-dd HH:mm:ss')}"></span></h5>
+
             <span th:if="${blog.content.length()>50}">
             <p><span th:utext="${#strings.substring(blog.content,0,50)} + '  ....'"></span></p>
             </span>

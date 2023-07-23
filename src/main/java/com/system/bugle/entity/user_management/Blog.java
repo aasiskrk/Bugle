@@ -3,6 +3,8 @@ package com.system.bugle.entity.user_management;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "blog") // Optional: Specify the table name explicitly
 @Data
@@ -19,6 +21,8 @@ public class Blog {
     private String author;
 
     private String content;
+
+    private LocalDateTime dateTime;
 
 
 }

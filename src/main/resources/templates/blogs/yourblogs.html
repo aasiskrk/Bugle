@@ -78,6 +78,10 @@
             border-radius: 5px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
         }
+        .blog h5 {
+            color: #aaa;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -90,6 +94,8 @@
             <div th:each="blog : ${blogs}" class="blog-card">
                 <h2 class="blog-title" th:text="${blog.title}"></h2>
                 <h5 class="blog-author">Author: <span th:text="${blog.author}"></span></h5>
+                <h5 style="color: #aaa;
+            font-size: 16px;"><span th:text="${#temporals.format(blog.dateTime, 'yyyy-MM-dd HH:mm:ss')}"></span></h5>
                 <p class="blog-content" th:text="${#strings.substring(blog.content,0,50) + '  ....'}"
                    th:unless="${blog.content.length() <= 50}"></p>
                 <p class="blog-content" th:text="${#strings.substring(blog.content,0,blog.content.length())}"

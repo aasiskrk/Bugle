@@ -48,6 +48,7 @@ public class SpringSecurityConfig {
                         "/user/**,",
                         "/user/register",
                         "/user/create",
+                        "/th-blogs/fetchById/**",
                         "/images/**",
                         "/file_server/**")
                 .permitAll()
