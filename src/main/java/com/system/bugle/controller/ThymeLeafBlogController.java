@@ -132,6 +132,8 @@ public class ThymeLeafBlogController {
         String base64 = Base64.getEncoder().encodeToString(bytes);
         return base64;
     }
+
+
 }
 
 

@@ -3,6 +3,7 @@
 <head>
     <title>Blogs</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         body {
             background-color: #000;
@@ -71,8 +72,11 @@
         <br>
         <div th:each="blog : ${blogs}" class="blog">
             <h2 th:text="${blog.title}"></h2>
+            <span class="icon"><i class="fas fa-user-alt"></i></span>
             <h5>Author: <span style="margin-right: 30px" th:text="${blog.author}"></span> Published on: <span th:text="${#temporals.format(blog.dateTime, 'yyyy-MM-dd HH:mm:ss')}"></span></h5>
 
+            <br>
+            <br>
             <span th:if="${blog.content.length()>50}">
             <p><span th:utext="${#strings.substring(blog.content,0,50)} + '  ....'"></span></p>
             </span>

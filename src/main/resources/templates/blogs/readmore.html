@@ -27,8 +27,13 @@
     }
 
     /* Change the author's color to a bit dimmer color */
-    .blog h5 {
+    .blog h5 span{
       color: #aaa;
+      font-size: 16px;
+    }
+
+    .blog h5{
+      color: #e5e5e5;
       font-size: 16px;
     }
 
@@ -77,9 +82,9 @@
   <div th:each="blog : ${blogs}" class="blog">
     <h2 th:text="${blog.title}"></h2>
     <h5>Author: <span th:text="${blog.author}"></span></h5>
-    <h5><span th:text="${#temporals.format(blog.dateTime, 'yyyy-MM-dd HH:mm:ss')}"></span></h5>
+    <h5>Published on: <span th:text="${#temporals.format(blog.dateTime, 'yyyy-MM-dd HH:mm:ss')}"></span></h5>
     <hr>
-    <p class="short-content" th:text="${blog.content}"></p>
+    <p  class="short-content" th:text="${blog.content}"></p>
   </div>
 </div>
 

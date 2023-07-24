@@ -96,6 +96,7 @@
                 <h5 class="blog-author">Author: <span th:text="${blog.author}"></span></h5>
                 <h5 style="color: #aaa;
             font-size: 16px;"><span th:text="${#temporals.format(blog.dateTime, 'yyyy-MM-dd HH:mm:ss')}"></span></h5>
+
                 <p class="blog-content" th:text="${#strings.substring(blog.content,0,50) + '  ....'}"
                    th:unless="${blog.content.length() <= 50}"></p>
                 <p class="blog-content" th:text="${#strings.substring(blog.content,0,blog.content.length())}"
