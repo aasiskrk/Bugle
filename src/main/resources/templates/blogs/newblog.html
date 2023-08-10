@@ -108,6 +108,13 @@
                 <textarea id="content" th:field="*{content}" class="form-control" placeholder="Write something meaningful!" style="resize: vertical; /* This allows the textarea to be vertically resizable */
             min-height: 300px;" required></textarea>
             </div>
+<!--            <div class="form-input">-->
+<!--                <label for="tags">Select Tags:</label>-->
+<!--                <select id="tags" name="selectedTags" class="form-control" multiple required>-->
+<!--                    &lt;!&ndash; Use Thymeleaf to loop through the available tags and populate the dropdown &ndash;&gt;-->
+<!--                    <option th:each="tag : ${tagsList}" th:value="${tag.tagid}" th:text="${tag.tags}"></option>-->
+<!--                </select>-->
+<!--            </div>-->
             <div class="button-section">
                 <button type="submit"  onclick="validateAndSave()">Save</button>
             </div>

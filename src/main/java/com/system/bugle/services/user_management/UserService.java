@@ -1,6 +1,7 @@
 package com.system.bugle.services.user_management;
 
 import com.system.bugle.dto.AuthenticationResponse;
+import com.system.bugle.dto.BlogDto;
 import com.system.bugle.dto.LoginDto;
 import com.system.bugle.entity.user_management.User;
 import com.system.bugle.pojo.user_management.UserPojo;
@@ -19,6 +20,8 @@ public interface UserService {
     void deleteById(Integer id);
 
     void sendEmail();
+
+    void updateUser(Integer id, UserPojo userPojo);
 
     AuthenticationResponse authenticate(LoginDto loginDto);
 }

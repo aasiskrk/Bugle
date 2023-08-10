@@ -29,11 +29,16 @@ public class ThymeLeafBlogController {
 
     private final BlogService blogService;
 
+
+
     public ThymeLeafBlogController(BlogService blogService) {
         this.blogService = blogService;
     }
 
+    @GetMapping("/goProfile")
+    public  String displayprofile(){return "user_list.html";}
     @GetMapping("/create")
+
     public String getBlogForm(Model model) {
         model.addAttribute("blogDto", new BlogDto());
         return "blogs/newblog.html";
@@ -49,7 +54,7 @@ public class ThymeLeafBlogController {
         blogDto.setDateTime(LocalDateTime.now());
 
         blogService.saveBlog(blogDto, uemail);
-        return "redirect:/th-blogs/create";
+        return "redirect:/th-blogs/create"; 
     }
 
     @GetMapping("/fetchById/{id}")

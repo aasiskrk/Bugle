@@ -14,9 +14,7 @@ public class ThymeLeafHomeController {
         return "homepage/home_page";
     }
 
-    @GetMapping("/tags")
-    public String displayTagPage(){return "tagpart/tags";}
-
-
+    @GetMapping("/goProfile")
+    public  String displayprofile(){return "user_list";}
 
 }

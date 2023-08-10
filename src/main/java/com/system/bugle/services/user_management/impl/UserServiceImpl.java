@@ -2,7 +2,9 @@ package com.system.bugle.services.user_management.impl;
 
 import com.system.bugle.config.PasswordEncoderUtil;
 import com.system.bugle.dto.AuthenticationResponse;
+import com.system.bugle.dto.BlogDto;
 import com.system.bugle.dto.LoginDto;
+import com.system.bugle.entity.user_management.Blog;
 import com.system.bugle.entity.user_management.User;
 import com.system.bugle.pojo.user_management.UserPojo;
 import com.system.bugle.repo.user_management.EmailCredRepo;
@@ -23,6 +25,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
 import java.io.IOException;
@@ -33,6 +36,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -78,6 +82,21 @@ public class UserServiceImpl implements UserService {
         return new UserPojo(user);
     }
 
+    @Override
+    @Transactional
+    public void updateUser(Integer id, UserPojo userPojo) {
+        Optional<User> userOptional = userRepo.findById(id);
+        if (userOptional.isPresent()) {
+            User existingUser = userOptional.get();
+            existingUser.setEmail(userPojo.getEmail());
+            existingUser.setFullName(userPojo.getFullname());
+            existingUser.setImage(String.valueOf(userPojo.getImage()));
+            existingUser.setPassword(userPojo.getPassword());
+            // Update any other fields as needed
+            userRepo.save(existingUser);
+        }
+    }
+
     public List<User> fetchAll() {
         return userRepo.findAll();
     }
@@ -116,6 +135,7 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
         }
     }
+
 
     @Override
     public AuthenticationResponse authenticate(LoginDto loginDto) {

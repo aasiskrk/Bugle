@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    .center-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 70vh;
+    }
+
+    .login-container {
+      max-width: 300px;
+      width: 100%;
+      background-color: #1E1E1E;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-input {
+      margin-bottom: 15px;
+    }
+
+    .form-input label {
+      font-weight: bold;
+    }
+
+    .form-control {
+      background-color: #292929;
+      color: white;
+      border: 1px solid #373737;
+      border-radius: 3px;
+      padding: 8px;
+      width: 100%;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: #007BFF;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    .button-section {
+      text-align: center;
+    }
+
+    .button-section button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      padding: 8px 15px;
+      cursor: pointer;
+    }
+
+    .button-section button:hover {
+      background-color: #0056b3;
+    }
+
+    .create-user-link {
+      color: #007BFF;
+      text-decoration: none;
+    }
+
+    .create-user-link:hover {
+      text-decoration: underline;
+    }
+    .paint-cimson{
+      color: #660708;
+    }
+    .signup-link {
+      margin-top: 15px;
+      text-align: center;
+    }
+    .line {
+      /* Add a style for the line separator */
+      height: 2px;
+      width: 100px;
+      background-color: #007BFF;
+      margin: 10px auto;
+    }
+
+    /* Additional style for displaying uploaded image */
+    .uploaded-image {
+      max-width: 100px;
+      margin: 10px auto;
+    }
+  </style>
+</head>
+<body>
+<div th:replace="layout/header :: header"></div>
+<div class="center-content">
+  <div class="login-container">
+    <form th:method="post"
+
+          th:action="@{/user/edit/}"
+          th:object="${user}" enctype="multipart/form-data">
+      <input type="hidden" th:field="*{id}" th:value="${user.id}">
+      <div class="form-input">
+        <label>Email</label>
+        <input type="text" th:field="*{email}" class="form-control" th:value="${user.email}" placeholder="E-mail" required autofocus/>
+        <p th:if="${requestError!=null}" th:text="${requestError['email']}" class="text-danger"></p>
+      </div>
+
+      <div class="form-input">
+        <label>Full name</label>
+        <input type="text" th:field="*{fullname}" class="form-control" th:value="${user.fullname}" placeholder="Full Name" required/>
+        <p th:if="${requestError!=null}" th:text="${requestError['fullname']}" class="text-danger"></p>
+      </div>
+
+      <div class="form-input">
+        <label>Password</label>
+        <input type="password" th:field="*{password}" class="form-control" th:value="${user.password}" placeholder="Password" required/>
+        <p th:if="${requestError!=null}" th:text="${requestError['password']}" class="text-danger"></p>
+      </div>
+
+      <!-- Add a section to display the uploaded image -->
+      <div>
+        <label>Profile Picture</label>
+        <input type="file" name="image" accept="image/*" class="form-control-file">
+      </div>
+      <!-- Show the uploaded image if available -->
+      <div th:if="${user.image != null}" class="uploaded-image">
+        <img th:src="'data:file_server/' + ${user.image}" width="100" height="100" alt="Uploaded Profile Picture" class="img-fluid">
+      </div>
+
+      <br/>
+      <input type="submit" class="btn btn-primary" value="Update">
+      <a th:href="@{/user/list}" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+</div>
+<hr class="line">
+<div class="paint-cimson">
+  <div th:replace="layout/footer :: footer"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

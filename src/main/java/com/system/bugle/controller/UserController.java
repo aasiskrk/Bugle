@@ -1,6 +1,7 @@
 package com.system.bugle.controller;
 
 
+import com.system.bugle.dto.BlogDto;
 import com.system.bugle.entity.user_management.User;
 import com.system.bugle.pojo.user_management.UserPojo;
 import com.system.bugle.services.user_management.UserService;
@@ -16,10 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -28,11 +26,6 @@ public class UserController {
 
     private final UserService userService;
     public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/file_server";
-
-    @GetMapping
-    public String getPage() {
-        return "hello_page";
-    }
 
 
 //    @PostMapping("/create")
@@ -68,12 +61,48 @@ public class UserController {
     public String editUser(@PathVariable("id") Integer id, Model model) {
         User user = userService.fetchById(id);
         model.addAttribute("user", new UserPojo(user));
-        return "register";
+        return "editprofile";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateUser(@PathVariable Integer id, @Valid UserPojo userPojo, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            // Handle validation errors
+            return "editprofile";
+        }
+        userService.updateUser(id, userPojo);
+        return "redirect:/user/list";
+    }
+
+    @GetMapping("/current/{id}")
+    public String getOneUser(@PathVariable("id") Integer id, Model model){
+        User user=userService.fetchById(id);
+        model.addAttribute("userCurrent", new UserPojo(user));
+        return "user_list";
     }
 
     @GetMapping("/list")
-    public String getUSerList(Model model) {
+    public String getUserList(Model model) {
         List<User> users = userService.fetchAll();
+
+
+        model.addAttribute("userList", users.stream().map(user ->
+                User.builder()
+                        .id(user.getId())
+                        .imageBase64(getImageBase64(user.getImage()))
+                        .email(user.getEmail())
+                        .fullName(user.getFullName())
+                        .build()
+
+        ));
+
+//        model.addAttribute("UPLOAD_DIRECTORY", "/" + UPLOAD_DIRECTORY);
+
+        return "user_list";
+    }
+    @GetMapping("/onelist/{id}")
+    public String getOneUser(@PathVariable("id") Integer id,Model model, RedirectAttributes redirectAttributes) {
+        List<User> users = Collections.singletonList(userService.fetchById(id));
 
 
         model.addAttribute("userList", users.stream().map(user ->

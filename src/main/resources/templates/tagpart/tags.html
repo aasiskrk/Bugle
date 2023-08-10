@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Tag Page</title>
@@ -14,7 +14,6 @@
 
 
         .tags-section {
-            border-bottom: 1px solid #ccc;
             padding-bottom: 20px;
             margin-bottom: 20px;
         }
@@ -29,8 +28,8 @@
             list-style: none;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-wrap: wrap;
+            display: inline-block;
+
         }
 
         .tag-item {
@@ -40,7 +39,7 @@
             border-radius: 5px;
             padding: 5px 10px;
             margin: 5px;
-            display: flex;
+            display: inline-flex;
             align-items: center;
         }
 
@@ -88,22 +87,42 @@
             padding: 20px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);">
     <!-- Tags Section -->
-    <div class="tags-section">
+
+    <div  class="tags-section">
         <h2>Tags Section</h2>
-        <ul class="tag-list">
-            <li class="tag-item"><i class="fas fa-tag"></i> Tag 1</li>
-            <!-- Add more tag items as needed -->
-        </ul>
+
+        <div class="tag-list">
+        <span th:each="tags : ${tags}">
+
+            <a>
+                <li class="tag-item">
+                    <i class="fas fa-tag" style="margin-right: 5px"></i>
+                    <span style="margin-bottom: 4px" th:text="${tags.tags}"></span>
+                </li>
+            </a>
+        </span>
+        </div>
+
+<!--            <li class="tag-item"><i class="fas fa-tag"></i><span th:text="${tags.tags}" th:if="${not #strings.isEmpty(tags.tags)}">,</span></li>-->
+<!-- Add more tag items as needed -->
+
     </div>
 
     <!-- Create Tags Section -->
-    <div class="create-tags-section">
+    <div class="create-tags-section" sec:authorize="isAuthenticated()">
         <h2>Create Tags Section</h2>
-        <input type="text" class="tag-input" placeholder="Enter tags separated by spaces">
-        <button class="create-button">Create Tags</button>
+        <form th:method="post" th:action="@{/th-tags/save}" th:object="${tagsDto}">
+        <input th:field="*{tags}" type="text" class="tag-input" placeholder="Enter a tag..." required>
+        <button  type="submit" class="create-button">Create Tags</button>
+        </form>
     </div>
 
+
 </div>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -111,6 +130,7 @@
 <div th:replace="layout/footer :: footer"></div>
 
 <!-- Font Awesome Icons -->
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
