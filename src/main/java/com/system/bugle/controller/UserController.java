@@ -40,6 +40,15 @@ public class UserController {
         return "register";
     }
 
+//    @PostMapping("/update/{id}")
+//    public String updateUser(@PathVariable Integer id, @Valid UserPojo userPojo, BindingResult bindingResult) {
+//        if (bindingResult.hasErrors()) {
+//            // Handle validation errors
+//            return "/user/list";
+//        }
+//        userService.updateUser(id, userPojo);
+//        return "redirect:/th-blogs/user-blogs";
+//    }
     @PostMapping("/create")
     public String createUser(@Valid UserPojo userPojo,
                              BindingResult bindingResult, RedirectAttributes redirectAttributes) throws IOException {
@@ -65,7 +74,7 @@ public class UserController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateUser(@PathVariable Integer id, @Valid UserPojo userPojo, BindingResult bindingResult) {
+    public String updateUser(@PathVariable Integer id, @ModelAttribute @Valid UserPojo userPojo, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             // Handle validation errors
             return "editprofile";

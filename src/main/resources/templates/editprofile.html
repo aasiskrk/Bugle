@@ -107,7 +107,7 @@
   <div class="login-container">
     <form th:method="post"
 
-          th:action="@{/user/edit/}"
+          th:action="@{/user/update/{id}(id=${user.id})}"
           th:object="${user}" enctype="multipart/form-data">
       <input type="hidden" th:field="*{id}" th:value="${user.id}">
       <div class="form-input">
@@ -139,7 +139,7 @@
       </div>
 
       <br/>
-      <input type="submit" class="btn btn-primary" value="Update">
+      <input type="submit" class="btn btn-primary" value="Update" >
       <a th:href="@{/user/list}" class="btn btn-secondary">Cancel</a>
     </form>
   </div>
